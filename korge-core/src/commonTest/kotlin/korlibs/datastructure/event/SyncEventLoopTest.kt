@@ -2,13 +2,14 @@ package korlibs.datastructure.event
 
 import korlibs.concurrent.lock.Lock
 import korlibs.concurrent.lock.isSupported
-import korlibs.concurrent.thread.*
-import korlibs.datastructure.thread.nativeThread
-import korlibs.io.async.*
-import korlibs.time.*
-import kotlin.test.*
-import kotlin.time.*
+import korlibs.concurrent.thread.NativeThread
+import korlibs.concurrent.thread.nativeThread
+import korlibs.concurrent.thread.sleepExact
+import korlibs.io.async.suspendTest
+import korlibs.time.milliseconds
+import kotlin.test.Test
 import kotlin.time.Duration.Companion.seconds
+import kotlin.time.TimeSource
 
 class SyncEventLoopTest {
     // @TODO: Lock.notify is not implemented on JS

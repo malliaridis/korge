@@ -1,11 +1,14 @@
 package korlibs.render.awt
 
-import korlibs.concurrent.thread.*
-import korlibs.graphics.gl.*
-import korlibs.kgl.*
-import korlibs.math.geom.*
-import korlibs.render.*
-import korlibs.time.*
+import korlibs.concurrent.thread.NativeThread
+import korlibs.concurrent.thread.sleepExact
+import korlibs.graphics.gl.AGOpengl
+import korlibs.kgl.NewOffsetKmlGlContext
+import korlibs.kgl.OffscreenKmlGlContext
+import korlibs.math.geom.Size
+import korlibs.render.GameWindow
+import korlibs.render.GameWindowCreationConfig
+import korlibs.time.FastDuration
 
 class AwtOffscreenGameWindow(
     var size: Size = Size(640, 480),

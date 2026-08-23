@@ -1,16 +1,20 @@
 package korlibs.render.awt
 
-import korlibs.datastructure.event.*
-import korlibs.datastructure.thread.*
-import korlibs.graphics.*
-import korlibs.image.awt.*
-import korlibs.image.bitmap.*
-import korlibs.io.async.*
-import korlibs.render.*
-import korlibs.time.*
-import java.awt.*
-import java.awt.event.*
-import javax.swing.*
+import java.awt.Dimension
+import java.awt.Graphics
+import java.awt.GridLayout
+import java.awt.event.WindowAdapter
+import java.awt.event.WindowEvent
+import javax.swing.JFrame
+import javax.swing.WindowConstants
+import korlibs.concurrent.thread.nativeThread
+import korlibs.datastructure.event.setInterval
+import korlibs.graphics.AG
+import korlibs.image.awt.toAwt
+import korlibs.image.bitmap.Bitmap
+import korlibs.io.async.launchUnscoped
+import korlibs.render.GameWindow
+import korlibs.time.hz
 
 class NewAwtGameWindow : GameWindow() {
     val canvas = AwtAGOpenglCanvas()

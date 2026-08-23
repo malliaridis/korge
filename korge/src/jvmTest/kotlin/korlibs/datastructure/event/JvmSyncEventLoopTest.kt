@@ -1,15 +1,21 @@
 package korlibs.datastructure.event
 
-import korlibs.concurrent.thread.*
-import korlibs.concurrent.thread.NativeThread.Companion.sleep
-import korlibs.datastructure.lock.*
-import korlibs.datastructure.thread.*
-import korlibs.datastructure.thread.NativeThread
-import korlibs.datastructure.thread.nativeThread
-import korlibs.time.*
-import java.awt.*
-import javax.swing.*
-import kotlin.test.*
+import java.awt.Color
+import java.awt.Container
+import java.awt.Dimension
+import java.awt.Graphics
+import java.awt.Graphics2D
+import java.awt.GraphicsDevice
+import java.awt.GraphicsEnvironment
+import javax.swing.JFrame
+import korlibs.concurrent.lock.Lock
+import korlibs.concurrent.thread.NativeThread
+import korlibs.concurrent.thread.nativeThread
+import korlibs.concurrent.thread.sleep
+import korlibs.time.hz
+import korlibs.time.seconds
+import kotlin.test.Ignore
+import kotlin.test.Test
 
 class JvmSyncEventLoopTest {
 
@@ -75,38 +81,6 @@ class JvmSyncEventLoopTest {
         }
         frame.isVisible = true
         frame.createBufferStrategy(2)
-
-        /*
-        val bc = GraphicsEnvironment.getLocalGraphicsEnvironment()
-            .getDefaultScreenDevice()
-            .getDefaultConfiguration()
-            .getBufferCapabilities()
-        println("BC=$bc")
-        //val b = ExtendedBufferCapabilities(
-        //    BufferCapabilities(ImageCapabilities(true), ImageCapabilities(true), FlipContents.PRIOR),
-        //    ExtendedBufferCapabilities.VSyncType.VSYNC_ON
-        //)
-        //frame.createBufferStrategy(2, b)
-        frame.createBufferStrategy(3)
-        val strategy = frame.bufferStrategy
-
-        nativeThread {
-            while (true) {
-                NativeThread.sleepExact(60.hz.timeSpan)
-                val time = measureTime {
-                do {
-                        do {
-                            val g = strategy.drawGraphics
-                            // Your rendering code here
-                        } while (strategy.contentsRestored())
-                        strategy.show()
-                } while (strategy.contentsLost())
-                }
-                println("time=$time")
-            }
-        }
-
-         */
 
         NativeThread.sleep(100.seconds)
     }

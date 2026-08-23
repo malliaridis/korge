@@ -72,7 +72,13 @@ kotlin {
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
+            implementation(libs.kotlinx.coroutines.test)
         }
+
+        val concurrentMain by creating {
+            dependsOn(commonMain.get())
+        }
+
         jvmMain.dependencies {
             api(libs.kotlin.reflect)
             implementation(libs.jackson.databind)
@@ -80,7 +86,7 @@ kotlin {
         }
 
         val jvmAndAndroidMain by creating {
-            dependsOn(commonMain.get())
+            dependsOn(concurrentMain)
         }
 
         jvmMain {
@@ -89,6 +95,10 @@ kotlin {
 
         androidMain {
             dependsOn(jvmAndAndroidMain)
+        }
+
+        nativeMain {
+            dependsOn(concurrentMain)
         }
 
         val iosTvosMain by creating {

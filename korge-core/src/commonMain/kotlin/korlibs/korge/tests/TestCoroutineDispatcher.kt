@@ -1,16 +1,24 @@
 package korlibs.korge.tests
 
-import korlibs.datastructure.*
-import korlibs.datastructure.lock.*
-import korlibs.time.*
-import kotlinx.coroutines.*
-import kotlin.coroutines.*
-import kotlin.time.*
+import korlibs.concurrent.lock.NonRecursiveLock
+import korlibs.datastructure.PriorityQueue
+import korlibs.time.milliseconds
+import korlibs.time.millisecondsLong
+import kotlin.coroutines.Continuation
+import kotlin.coroutines.ContinuationInterceptor
+import kotlin.coroutines.CoroutineContext
+import kotlin.coroutines.resume
+import kotlin.coroutines.startCoroutine
+import kotlin.time.Duration
+import kotlinx.coroutines.CancellableContinuation
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Delay
+import kotlinx.coroutines.InternalCoroutinesApi
+import kotlinx.coroutines.Runnable
 
 @OptIn(InternalCoroutinesApi::class)
 @Deprecated("")
 class TestCoroutineDispatcher(val frameTime: Duration = 16.milliseconds) :
-	//CoroutineDispatcher(), ContinuationInterceptor, Delay, DelayFrame {
 	CoroutineDispatcher(), ContinuationInterceptor, Delay {
 	var time = 0L; private set
 
@@ -20,20 +28,6 @@ class TestCoroutineDispatcher(val frameTime: Duration = 16.milliseconds) :
 
 	private val tasks = PriorityQueue<TimedTask>(Comparator { a, b -> a.time.compareTo(b.time) })
     private val lock = NonRecursiveLock()
-
-	//override fun <T> interceptContinuation(continuation: Continuation<T>): Continuation<T> {
-	//	return object : Continuation<T> {
-	//		override val context: CoroutineContext = continuation.context
-	//		override fun resumeWith(result: Result<T>) {
-	//			val exception = result.exceptionOrNull()
-	//			if (exception != null) {
-	//				continuation.resumeWithException(exception)
-	//			} else {
-	//				continuation.resume(result.getOrThrow())
-	//			}
-	//		}
-	//	}
-	//}
 
 	private fun scheduleAfter(time: Int, callback: suspend () -> Unit) {
         lock {
@@ -51,19 +45,12 @@ class TestCoroutineDispatcher(val frameTime: Duration = 16.milliseconds) :
 		scheduleAfter(timeMillis.toInt()) { continuation.resume(Unit) }
 	}
 
-	//override fun delayFrame(continuation: CancellableContinuation<Unit>) {
-	//	scheduleAfter(frameTime.millisecondsInt) { continuation.resume(Unit) }
-	//}
-
 	var exception: Throwable? = null
 	fun loop() {
-		//println("doStep: currentThreadId=$currentThreadId")
 		if (exception != null) throw exception ?: error("error")
-		//println("TASKS: ${tasks.size}")
 		while (true) {
 			val task = lock { if (tasks.isNotEmpty()) tasks.removeHead() else null } ?: break
 			this.time = task.time
-			//println("RUN: $task")
 
             // @TODO: This is probably wrong
 			task.callback.startCoroutine(object : Continuation<Unit> {

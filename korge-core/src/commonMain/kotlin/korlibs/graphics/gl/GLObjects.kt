@@ -1,11 +1,27 @@
 package korlibs.graphics.gl
 
-import korlibs.datastructure.*
-import korlibs.datastructure.lock.*
-import korlibs.graphics.*
-import korlibs.kgl.*
-import korlibs.memory.unit.*
-import kotlinx.atomicfu.*
+import korlibs.concurrent.lock.Lock
+import korlibs.datastructure.fastArrayListOf
+import korlibs.graphics.AG
+import korlibs.graphics.AGBuffer
+import korlibs.graphics.AGFrameBufferBase
+import korlibs.graphics.AGFrameBufferInfo
+import korlibs.graphics.AGNativeObject
+import korlibs.graphics.AGObject
+import korlibs.graphics.AGStats
+import korlibs.graphics.AGTexture
+import korlibs.kgl.KmlGl
+import korlibs.kgl.deleteBuffer
+import korlibs.kgl.deleteFramebuffer
+import korlibs.kgl.deleteRenderbuffer
+import korlibs.kgl.deleteTexture
+import korlibs.kgl.genBuffer
+import korlibs.kgl.genFramebuffer
+import korlibs.kgl.genRenderbuffer
+import korlibs.kgl.genTexture
+import korlibs.memory.unit.ByteUnits
+import kotlinx.atomicfu.atomic
+import kotlinx.atomicfu.updateAndGet
 
 class GLGlobalState(val gl: KmlGl, val ag: AG) {
     var texturesCreated = atomic(0)

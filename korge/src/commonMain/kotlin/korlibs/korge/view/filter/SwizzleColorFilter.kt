@@ -1,8 +1,8 @@
 package korlibs.korge.view.filter
 
-import korlibs.concurrent.lock.*
-import korlibs.graphics.shader.*
-import korlibs.korge.view.property.*
+import korlibs.concurrent.lock.Lock
+import korlibs.graphics.shader.appending
+import korlibs.korge.view.property.ViewProperty
 
 /**
  * Allows to swizzle (interchange) color components via the [swizzle] property.

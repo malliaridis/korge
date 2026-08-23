@@ -1,11 +1,13 @@
 package korlibs.sdl
 
-import korlibs.concurrent.thread.*
-import korlibs.ffi.*
-import korlibs.io.async.*
-import korlibs.time.*
-import kotlinx.coroutines.*
-import kotlin.test.*
+import korlibs.ffi.CreateFFIMemory
+import korlibs.ffi.getS32
+import korlibs.ffi.usePointer
+import korlibs.io.async.suspendTest
+import korlibs.time.milliseconds
+import kotlin.test.Ignore
+import kotlin.test.Test
+import kotlinx.coroutines.delay
 
 class SDLTest {
     @Ignore

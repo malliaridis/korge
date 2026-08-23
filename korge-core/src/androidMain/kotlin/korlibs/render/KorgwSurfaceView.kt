@@ -6,18 +6,17 @@ import android.opengl.*
 import android.opengl.EGL14.*
 import android.os.*
 import android.view.*
-import android.view.KeyEvent
+import javax.microedition.khronos.egl.*
+import javax.microedition.khronos.egl.EGLConfig
+import javax.microedition.khronos.egl.EGLDisplay
+import javax.microedition.khronos.opengles.*
+import korlibs.concurrent.lock.*
 import korlibs.datastructure.*
-import korlibs.datastructure.lock.*
 import korlibs.event.*
 import korlibs.io.async.*
 import korlibs.math.geom.*
 import korlibs.memory.*
 import korlibs.time.*
-import javax.microedition.khronos.egl.*
-import javax.microedition.khronos.egl.EGLConfig
-import javax.microedition.khronos.egl.EGLDisplay
-import javax.microedition.khronos.opengles.*
 import kotlin.concurrent.*
 
 // https://github.com/aosp-mirror/platform_frameworks_base/blob/e4df5d375df945b0f53a9c7cca83d37970b7ce64/opengl/java/android/opengl/GLSurfaceView.java

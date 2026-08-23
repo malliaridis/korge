@@ -1,8 +1,8 @@
 package korlibs.render
 
-import korlibs.datastructure.*
-import korlibs.datastructure.lock.*
-import korlibs.event.*
+import korlibs.concurrent.lock.NonRecursiveLock
+import korlibs.datastructure.Pool
+import korlibs.event.TouchEvent
 
 class TouchEventHandler {
     @PublishedApi

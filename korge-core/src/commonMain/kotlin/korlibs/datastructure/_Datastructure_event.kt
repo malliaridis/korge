@@ -2,13 +2,21 @@
 
 package korlibs.datastructure.event
 
-import korlibs.concurrent.lock.*
-import korlibs.concurrent.thread.*
-import korlibs.datastructure.*
-import korlibs.datastructure.pauseable.*
-import korlibs.logger.*
-import korlibs.time.*
-import kotlin.time.*
+import korlibs.concurrent.lock.Lock
+import korlibs.concurrent.thread.NativeThread
+import korlibs.concurrent.thread.nativeThread
+import korlibs.concurrent.thread.sleep
+import korlibs.datastructure.TGenPriorityQueue
+import korlibs.datastructure.pauseable.Pauseable
+import korlibs.datastructure.pauseable.SyncPauseable
+import korlibs.logger.Console
+import korlibs.time.Frequency
+import korlibs.time.Stopwatch
+import korlibs.time.hz
+import korlibs.time.milliseconds
+import korlibs.time.seconds
+import kotlin.time.Duration
+import kotlin.time.TimeSource
 
 expect fun createPlatformEventLoop(precise: Boolean = true): SyncEventLoop
 

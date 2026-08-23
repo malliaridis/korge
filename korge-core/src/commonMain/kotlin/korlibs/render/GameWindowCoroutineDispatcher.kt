@@ -1,15 +1,29 @@
 package korlibs.render
 
-import korlibs.datastructure.*
-import korlibs.datastructure.closeable.*
-import korlibs.datastructure.lock.*
-import korlibs.io.experimental.*
-import korlibs.logger.*
-import korlibs.time.*
-import korlibs.time.measureTime
-import kotlinx.coroutines.*
-import kotlin.coroutines.*
-import kotlin.time.*
+import korlibs.concurrent.lock.NonRecursiveLock
+import korlibs.datastructure.Queue
+import korlibs.datastructure.TGenPriorityQueue
+import korlibs.io.experimental.KorioExperimentalApi
+import korlibs.logger.Logger
+import korlibs.time.FastDuration
+import korlibs.time.PerformanceCounter
+import korlibs.time.fast
+import korlibs.time.fastMeasureTime
+import korlibs.time.fastMilliseconds
+import korlibs.time.milliseconds
+import korlibs.time.roundMilliseconds
+import korlibs.time.seconds
+import kotlin.coroutines.CoroutineContext
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
+import kotlin.time.Duration
+import kotlinx.coroutines.CancellableContinuation
+import kotlinx.coroutines.CompletableDeferred
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Delay
+import kotlinx.coroutines.DisposableHandle
+import kotlinx.coroutines.InternalCoroutinesApi
+import kotlinx.coroutines.Runnable
 
 @OptIn(InternalCoroutinesApi::class)
 class GameWindowCoroutineDispatcher(

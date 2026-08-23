@@ -1,17 +1,20 @@
 package korlibs.render.awt
 
-import korlibs.concurrent.thread.*
-import korlibs.concurrent.thread.NativeThread.Companion.sleep
-import korlibs.datastructure.thread.*
-import korlibs.datastructure.thread.NativeThread
-import korlibs.image.color.*
-import korlibs.image.format.*
-import korlibs.io.async.*
-import korlibs.io.file.std.*
-import korlibs.korge.view.*
-import korlibs.time.*
-import kotlinx.coroutines.*
-import kotlin.test.*
+import korlibs.concurrent.thread.NativeThread
+import korlibs.concurrent.thread.sleep
+import korlibs.image.color.Colors
+import korlibs.image.format.readBitmap
+import korlibs.io.async.launchUnscoped
+import korlibs.io.file.std.resourcesVfs
+import korlibs.korge.view.Views
+import korlibs.korge.view.addFastUpdater
+import korlibs.korge.view.image
+import korlibs.korge.view.solidRect
+import korlibs.time.Stopwatch
+import korlibs.time.seconds
+import kotlin.test.Ignore
+import kotlin.test.Test
+import kotlinx.coroutines.delay
 
 class AwtGameWindowTest {
     @Test

@@ -1,10 +1,11 @@
 package korlibs.korge.service.storage
 
-import korlibs.datastructure.*
-import korlibs.datastructure.lock.*
-import korlibs.io.serialization.json.*
-import korlibs.korge.view.*
-import kotlin.collections.*
+import korlibs.concurrent.lock.Lock
+import korlibs.datastructure.Extra
+import korlibs.io.serialization.json.fromJson
+import korlibs.io.serialization.json.toJson
+import korlibs.korge.view.Views
+import korlibs.korge.view.ViewsContainer
 
 /** Cross-platform way of synchronously storing small data */
 //expect fun NativeStorage(views: Views): IStorageWithKeys

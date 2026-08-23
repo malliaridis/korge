@@ -1,6 +1,5 @@
 package korlibs.datastructure.event
 
-import korlibs.datastructure.closeable.*
 import korlibs.platform.*
 import korlibs.time.*
 
