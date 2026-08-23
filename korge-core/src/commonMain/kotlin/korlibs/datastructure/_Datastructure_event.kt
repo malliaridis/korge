@@ -12,29 +12,43 @@ import korlibs.datastructure.pauseable.SyncPauseable
 import korlibs.logger.Console
 import korlibs.time.Frequency
 import korlibs.time.Stopwatch
-import korlibs.time.hz
 import korlibs.time.milliseconds
 import korlibs.time.seconds
 import kotlin.time.Duration
 import kotlin.time.TimeSource
 
+@Deprecated(
+    message = "Deprecated in favor of platform-independent createEventLoop",
+    replaceWith = ReplaceWith("createEventLoop", "korlibs.korge.core.event")
+)
 expect fun createPlatformEventLoop(precise: Boolean = true): SyncEventLoop
 
-interface EventLoop : Pauseable, AutoCloseable {
-    companion object
+@Deprecated(
+    message = "Interface was relocated",
+    replaceWith = ReplaceWith("EventLoop", "korlibs.korge.core.event.EventLoop"),
+    level = DeprecationLevel.WARNING,
+)
+typealias EventLoop = korlibs.korge.core.event.EventLoop
 
-    fun setImmediate(task: () -> Unit)
-    fun setTimeout(time: Duration, task: () -> Unit): AutoCloseable
-    fun setInterval(time: Duration, task: () -> Unit): AutoCloseable
-    fun setIntervalFrame(task: () -> Unit): AutoCloseable = setInterval(60.hz.duration, task)
-}
-
+@Deprecated(
+    message = "Function was relocated",
+    replaceWith = ReplaceWith("this.setInterval(time, task)", "korlibs.korge.core.event.setInterval"),
+    level = DeprecationLevel.WARNING,
+)
 fun EventLoop.setInterval(time: Frequency, task: () -> Unit): AutoCloseable = setInterval(time.duration, task)
 
+@Deprecated(
+    message = "Deprecated in favor of CoroutineEventLoop.",
+    level = DeprecationLevel.WARNING,
+)
 abstract class BaseEventLoop : EventLoop, Pauseable {
     val runLock = Lock()
 }
 
+@Deprecated(
+    message = "Use CoroutineEventLoop instead.",
+    level = DeprecationLevel.WARNING,
+)
 open class SyncEventLoop(
     /** Execute timers immediately instead of waiting. Useful for testing. */
     var immediateRun: Boolean = false,

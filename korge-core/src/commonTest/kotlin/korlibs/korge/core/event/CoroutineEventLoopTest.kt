@@ -1,4 +1,4 @@
-package korlibs.korge.core.coroutines
+package korlibs.korge.core.event
 
 import kotlin.test.Test
 import kotlin.test.assertEquals

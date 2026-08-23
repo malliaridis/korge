@@ -1,11 +1,17 @@
 package korlibs.datastructure.event
 
-import korlibs.time.*
-import kotlinx.browser.*
+import korlibs.time.TimeSpan
+import korlibs.time.millisecondsInt
+import kotlinx.browser.window
 
 actual fun createPlatformEventLoop(precise: Boolean): SyncEventLoop =
     LocalJsEventLoop()
 
+@Deprecated(
+    message = "Deprecated in favor of CoroutineEventLoop",
+    replaceWith = ReplaceWith("CoroutineEventLoop", "korlibs.korge.core.event.CoroutineEventLoop"),
+    level = DeprecationLevel.WARNING,
+)
 open class LocalJsEventLoop(
     immediateRun: Boolean = false,
 ) : SyncEventLoop(immediateRun) {

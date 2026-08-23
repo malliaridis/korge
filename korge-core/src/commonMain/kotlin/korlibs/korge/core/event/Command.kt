@@ -1,6 +1,4 @@
-package korlibs.korge.core
-
-import korlibs.korge.core.coroutines.TimedTask
+package korlibs.korge.core.event
 
 sealed interface Command {
     class Run(val task: () -> Unit, val first: Boolean) : Command

@@ -1,8 +1,7 @@
-package korlibs.korge.core.coroutines
+package korlibs.korge.core.event
 
 import korlibs.datastructure.TGenPriorityQueue
-import korlibs.datastructure.event.EventLoop
-import korlibs.korge.core.Command
+import korlibs.korge.core.coroutines.KorgeDispatchers
 import kotlin.coroutines.ContinuationInterceptor
 import kotlin.coroutines.EmptyCoroutineContext
 import kotlin.time.Duration
